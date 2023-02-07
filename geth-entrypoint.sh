@@ -48,4 +48,5 @@ echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 	--nodiscover \
 	--maxpeers=100 \
 	--nat=extip:$HOST_IP \
-	--networkid="$CHAIN_ID"
+	--networkid="$CHAIN_ID" \
+	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP"
