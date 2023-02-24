@@ -1,4 +1,4 @@
-![Base](logo.png)
+![Base](logo.webp)
 
 # Base node
 
