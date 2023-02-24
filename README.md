@@ -19,13 +19,15 @@ This repository contains the relevant Docker builds to run your own node on the 
 1. Ensure you have an Goerli L1 node RPC available, and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose).
 2. Run:
 ```
-docker-compose up
+docker compose up
 ```
 3. You should now be able to `curl` your Base node:
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' \
   -H "Content-Type: application/json" http://localhost:8545
 ```
+
+Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint.sh` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
 ### Syncing
 
