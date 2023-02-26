@@ -6,11 +6,17 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
+### Requirements
+
+We recommend you this configuration to run a node:
+- at least 16 GB RAM
+- an SSD drive with at least 100 GB free
+
 ### Supported networks
 
 | Ethereum Network | Status |
 |------------------|--------|
-| Goerli testnet   | ✅      |
+| Goerli testnet   | ✅     |
 | Mainnet          | 🚧     |
 
 
