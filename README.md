@@ -21,6 +21,10 @@ This repository contains the relevant Docker builds to run your own node on the 
 [![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
 [![Twitter BuildOnBase](https://img.shields.io/twitter/follow/BuildOnBase?style=social)](https://twitter.com/BuildOnBase)
 
+<!-- Badge row 3 - detailed status -->
+
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
+
 ### Supported networks
 
 | Ethereum Network | Status |
