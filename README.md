@@ -26,13 +26,18 @@ This repository contains the relevant Docker builds to run your own node on the 
 [![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
 
+### Requirements
+
+We recommend you this configuration to run a node:
+- at least 16 GB RAM
+- an SSD drive with at least 100 GB free
+
 ### Supported networks
 
 | Ethereum Network | Status |
 |------------------|--------|
-| Goerli testnet   | ✅      |
+| Goerli testnet   | ✅     |
 | Mainnet          | 🚧     |
-
 
 ### Usage
 
@@ -53,8 +58,8 @@ Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You ca
 
 Sync speed depends on your L1 node, as the majority of the chain is derived from data submitted to the L1. You can check your syncing status using the `optimism_syncStatus` RPC on the `op-node` container. Example:
 ```
-echo Latest synced block behind by: $((($(date +%s)-$( \
-  curl -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' \
-  -H "Content-Type: application/json" http://localhost:7545 | \
-  jq -r .result.unsafe_l2.timestamp))/60)) minutes
+echo Latest synced block behind by: \
+$((($( date +%s )-\
+$( curl -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Content-Type: application/json" http://localhost:7545 |
+   jq -r .result.unsafe_l2.timestamp))/60)) minutes
 ```
