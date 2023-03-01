@@ -24,6 +24,7 @@ This repository contains the relevant Docker builds to run your own node on the 
 <!-- Badge row 3 - detailed status -->
 
 [![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
 
 ### Supported networks
 
