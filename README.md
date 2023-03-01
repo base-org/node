@@ -6,6 +6,12 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
+<!-- Badge row 1 - status -->
+
+[![GitHub
+contributors](https://img.shields.io/github/contributors/base-org/node)](https://github.com/base-org/node/graphs/contributors)
+
+
 ### Supported networks
 
 | Ethereum Network | Status |
