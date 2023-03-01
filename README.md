@@ -17,6 +17,7 @@ This repository contains the relevant Docker builds to run your own node on the 
 <!-- Badge row 2 - links and profiles -->
 
 [![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
+[![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
 
 ### Supported networks
 
