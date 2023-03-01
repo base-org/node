@@ -11,6 +11,7 @@ This repository contains the relevant Docker builds to run your own node on the 
 [![GitHub contributors](https://img.shields.io/github/contributors/base-org/node)](https://github.com/base-org/node/graphs/contributors)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/node)](https://github.com/base-org/node/graphs/contributors)
 [![GitHub Stars](https://img.shields.io/github/stars/base-org/node.svg)](https://github.com/base-org/node/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base-org/node)
 
 ### Supported networks
 
