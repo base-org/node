@@ -6,11 +6,17 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
-### Requirements
+### Hardware requirements
 
 We recommend you this configuration to run a node:
 - at least 16 GB RAM
 - an SSD drive with at least 100 GB free
+
+### Troubleshootings
+
+If you encounter problems with your node, please reach it out on [our Discord](https://discord.gg/buildonbase):
+- take the "Developer" role (to do this, go to `the server menu > Linked Roles > connect GitHub`)
+- ask it in `#🛟|node-support`
 
 ### Supported networks
 
@@ -19,6 +25,14 @@ We recommend you this configuration to run a node:
 | Goerli testnet   | ✅     |
 | Mainnet          | 🚧     |
 
+### Upgrades
+
+If you run a node you need to subscribe to [an update feed](https://community.optimism.io/docs/developers/releases/) (either [the mailing list](https://groups.google.com/a/optimism.io/g/optimism-announce) or [the RSS feed](https://changelog.optimism.io/feed.xml)) to know when to upgrade. <br/>
+Otherwise, your node will eventually stop working.
+
+### Hosted Goerli L1 nodes providers
+
+You'll need your own L1 RPC URL. This can be one that you run yourself, or via a third-party provider, such as our [partners](https://docs.base.org/tools/node-providers/).
 
 ### Usage
 
