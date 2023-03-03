@@ -26,11 +26,17 @@ This repository contains the relevant Docker builds to run your own node on the 
 [![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
 
-### Requirements
+### Hardware requirements
 
 We recommend you this configuration to run a node:
 - at least 16 GB RAM
 - an SSD drive with at least 100 GB free
+
+### Troubleshooting
+
+If you encounter problems with your node, please open a [GitHub issue](https://github.com/base-org/node/issues/new/choose) or reach out on our Discord:
+- Once you've joined, in the Discord app go to `server menu` > `Linked Roles` > `connect GitHub` and connect your GitHub account so you can gain access to our special developer channels
+- Report your issue in `#🛟|node-support`
 
 ### Supported networks
 
