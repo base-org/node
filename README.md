@@ -6,6 +6,26 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
+<!-- Badge row 1 - status -->
+
+[![GitHub contributors](https://img.shields.io/github/contributors/base-org/node)](https://github.com/base-org/node/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/node)](https://github.com/base-org/node/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/base-org/node.svg)](https://github.com/base-org/node/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base-org/node)
+[![GitHub](https://img.shields.io/github/license/base-org/node?color=blue)](https://github.com/base-org/node/blob/main/LICENSE)
+
+<!-- Badge row 2 - links and profiles -->
+
+[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
+[![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
+[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
+[![Twitter BuildOnBase](https://img.shields.io/twitter/follow/BuildOnBase?style=social)](https://twitter.com/BuildOnBase)
+
+<!-- Badge row 3 - detailed status -->
+
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
+
 ### Requirements
 
 We recommend you this configuration to run a node:
@@ -18,7 +38,6 @@ We recommend you this configuration to run a node:
 |------------------|--------|
 | Goerli testnet   | ✅     |
 | Mainnet          | 🚧     |
-
 
 ### Usage
 
