@@ -6,6 +6,26 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
+<!-- Badge row 1 - status -->
+
+[![GitHub contributors](https://img.shields.io/github/contributors/base-org/node)](https://github.com/base-org/node/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/node)](https://github.com/base-org/node/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/base-org/node.svg)](https://github.com/base-org/node/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base-org/node)
+[![GitHub](https://img.shields.io/github/license/base-org/node?color=blue)](https://github.com/base-org/node/blob/main/LICENSE)
+
+<!-- Badge row 2 - links and profiles -->
+
+[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
+[![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
+[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
+[![Twitter BuildOnBase](https://img.shields.io/twitter/follow/BuildOnBase?style=social)](https://twitter.com/BuildOnBase)
+
+<!-- Badge row 3 - detailed status -->
+
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
+
 ### Hardware requirements
 
 We recommend you this configuration to run a node:
@@ -25,10 +45,9 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 | Goerli testnet   | ✅     |
 | Mainnet          | 🚧     |
 
-
 ### Usage
 
-1. Ensure you have [an ethereum Goerli L1 node RPC](https://docs.base.org/tools/node-providers) available (not Base Goerli), and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
+1. Ensure you have an Ethereum Goerli L1 node RPC available (not Base Goerli), and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
 2. Run:
 ```
 docker compose up
@@ -47,6 +66,6 @@ Sync speed depends on your L1 node, as the majority of the chain is derived from
 ```
 echo Latest synced block behind by: \
 $((($( date +%s )-\
-$( curl -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Content-Type: application/json" http://localhost:7545 |
+$( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Content-Type: application/json" http://localhost:7545 |
    jq -r .result.unsafe_l2.timestamp))/60)) minutes
 ```
