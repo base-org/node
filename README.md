@@ -22,7 +22,7 @@ We recommend you this configuration to run a node:
 
 ### Usage
 
-1. Ensure you have an Goerli L1 node RPC available, and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose).
+1. Ensure you have a Goerli ethereum (not Base Goerli) L1 node RPC available, and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
 2. Run:
 ```
 docker compose up
