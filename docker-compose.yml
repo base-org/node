@@ -1,5 +1,5 @@
 services:
-  geth: # this is optimism's geth client
+  geth: # this is Optimism's geth client
     build: .
     ports:
       - 8545:8545
