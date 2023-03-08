@@ -1,0 +1,51 @@
+name: Bug report
+description: Create a report to help us improve
+title: "Bug: "
+labels: ["type: bug"]
+
+body:
+  - type: input
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional info
+      description: If applicable, include links to screenshots or error logs
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please fill in details for bugs reported in your environment
+      placeholder: |
+        - OS: [e.g. Fedora]
+        - Version [e.g. 37]
+

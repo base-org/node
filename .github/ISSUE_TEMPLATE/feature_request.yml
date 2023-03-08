@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest an idea for this project
+title: "Feature Request: "
+labels: ["type: enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue form is for feature requests only!
+        If you've found a bug, please use [bug_report](/new?template=bug_report.yml)
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: Describe any alternative solutions or features you've considered.
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+
