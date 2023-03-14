@@ -80,6 +80,7 @@ services:
 Sync speed depends on your L1 node, as the majority of the chain is derived from data submitted to the L1. You can check your syncing status using the `optimism_syncStatus` RPC on the `op-node` container. Example:
 
 ```
+command -v jq  &> /dev/null || { echo "jq is not installed" 1>&2 ; }
 echo Latest synced block behind by: \
 $((($( date +%s )-\
 $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Content-Type: application/json" http://localhost:7545 |
