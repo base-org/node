@@ -25,6 +25,7 @@ services:
       - ./op-node-entrypoint.sh
     environment:
       - OP_NODE_L1_ETH_RPC=https://ethereum-goerli-rpc.allthatnode.com # [recommended] replace with your preferred L1 (ethereum, not Base) node RPC URL
+      - OP_NODE_L1_TRUST_RPC=true # temporary for Goerli Shapella upgrade
       - OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
       - OP_NODE_L2_ENGINE_AUTH_RAW=688f5d737bad920bdfb2fc2f488d6b6209eebda1dae949a8de91398d932c517a # for localdev only
       - OP_NODE_L2_ENGINE_RPC=http://geth:8551
