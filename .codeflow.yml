@@ -1,0 +1,5 @@
+secure:
+  required_reviews: 0
+  requires_mfa: true
+  branches:
+    - main
