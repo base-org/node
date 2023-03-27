@@ -5,11 +5,12 @@ VERBOSITY=${GETH_VERBOSITY:-3}
 GETH_DATA_DIR=/data
 GETH_CHAINDATA_DIR="$GETH_DATA_DIR/geth/chaindata"
 OP_GETH_GENESIS_FILE_PATH="${OP_GETH_GENESIS_FILE_PATH:-/genesis.json}"
-CHAIN_ID=$(cat "$OP_GETH_GENESIS_FILE_PATH" | jq -r .config.chainId)
+CHAIN_ID=$(jq -r .config.chainId < "$OP_GETH_GENESIS_FILE_PATH")
 RPC_PORT="${RPC_PORT:-8545}"
 WS_PORT="${WS_PORT:-8546}"
 AUTHRPC_PORT="${AUTHRPC_PORT:-8551}"
 HOST_IP="0.0.0.0"
+ADDITIONAL_ARGS=""
 
 mkdir -p $GETH_DATA_DIR
 
@@ -24,6 +25,10 @@ else
 fi
 
 echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
+
+if [ "${OP_GETH_ETH_STATS+x}" = x ]; then
+  ADDITIONAL_ARGS="$ADDITIONAL_ARGS --ethstats=$OP_GETH_ETH_STATS"
+fi
 
 ./geth \
 	--datadir="$GETH_DATA_DIR" \
@@ -49,4 +54,5 @@ echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 	--maxpeers=100 \
 	--nat=extip:$HOST_IP \
 	--networkid="$CHAIN_ID" \
-	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP"
+	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
+	$ADDITIONAL_ARGS # intentionally unquoted
