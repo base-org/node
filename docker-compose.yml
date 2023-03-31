@@ -5,8 +5,7 @@ services:
       - 8545:8545
       - 8546:8546
       - 30303:30303
-    command:
-      - ./geth-entrypoint.sh
+    command: [ "sh", "./geth-entrypoint.sh" ]
     environment:
       - OP_GETH_GENESIS_FILE_PATH=goerli/genesis-l2.json
       - OP_GETH_SEQUENCER_HTTP=https://goerli.base.org
@@ -22,8 +21,7 @@ services:
       - 9222:9222
       - 7300:7300 # metrics
       - 6060:6060
-    command:
-      - ./op-node-entrypoint.sh
+    command: [ "sh", "./op-node-entrypoint.sh" ]
     environment:
       - OP_NODE_L1_ETH_RPC=https://ethereum-goerli-rpc.allthatnode.com # [recommended] replace with your preferred L1 (ethereum, not Base) node RPC URL
       - OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
