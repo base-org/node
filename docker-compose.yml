@@ -41,3 +41,7 @@ services:
       - OP_NODE_RPC_PORT=8545
       - OP_NODE_SNAPSHOT_LOG=/tmp/op-node-snapshot-log
       - OP_NODE_VERIFIER_L1_CONFS=0
+#     OP_NODE_L1_TRUST_RPC allows for faster syncing, but should be used *only* if your L1 RPC node
+#     is fully trusted.  It also allows op-node to work with clients such as Erigon that do not
+#     support storage proofs.
+#     - OP_NODE_L1_TRUST_RPC=true
