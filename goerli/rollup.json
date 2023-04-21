@@ -24,5 +24,6 @@
   "l2_chain_id": 84531,
   "batch_inbox_address": "0x8453100000000000000000000000000000000000",
   "deposit_contract_address": "0xe93c8cd0d409341205a592f8c4ac1a5fe5585cfa",
-  "l1_system_config_address": "0xb15eea247ece011c68a614e4a77ad648ff495bc1"
+  "l1_system_config_address": "0xb15eea247ece011c68a614e4a77ad648ff495bc1",
+  "regolith_time": 1682614800
 }
