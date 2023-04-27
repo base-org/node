@@ -18,7 +18,7 @@ FROM golang:1.19 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth.git
-ENV COMMIT=11f0554a4313ea0e0aaddef194058b057aadce5c
+ENV COMMIT=1a6912a4d80adf6fd76869d2efc53e45b24c7e7f
 RUN git init && \
     git remote add origin $REPO && \
     git fetch --depth=1 origin $COMMIT && \
