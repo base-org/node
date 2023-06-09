@@ -12,7 +12,6 @@ RUN git init && \
 RUN cd op-node && \
     make op-node
 
-
 FROM golang:1.19 as geth
 
 WORKDIR /app
@@ -26,14 +25,16 @@ RUN git init && \
 
 RUN go run build/ci.go install -static ./cmd/geth
 
-
 FROM golang:1.19
 
 RUN apt-get update && \
-    apt-get install -y jq curl
+    apt-get install -y jq curl && \
+    rm -rf /var/lib/apt/lists
 
 WORKDIR /app
 
 COPY --from=op /app/op-node/bin/op-node ./
 COPY --from=geth /app/build/bin/geth ./
-COPY . .
+COPY geth-entrypoint .
+COPY op-node-entrypoint .
+COPY goerli ./goerli
