@@ -6,6 +6,8 @@ services:
       - 8546:8546
       - 30303:30303
     command: [ "sh", "./geth-entrypoint" ]
+    volumes:
+      - "./geth-data:/data"
     environment:
       - OP_GETH_GENESIS_FILE_PATH=goerli/genesis-l2.json
       - OP_GETH_SEQUENCER_HTTP=https://goerli.base.org
