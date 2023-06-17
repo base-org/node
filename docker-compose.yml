@@ -5,12 +5,13 @@ services:
       - 8545:8545
       - 8546:8546
       - 30303:30303
+      - 7301:6060 # metrics
     command: [ "sh", "./geth-entrypoint" ]
     volumes:
       - "./geth-data:/data"
     environment:
       - OP_GETH_GENESIS_FILE_PATH=goerli/genesis-l2.json
-      - OP_GETH_SEQUENCER_HTTP=https://goerli.base.org
+      - OP_GETH_SEQUENCER_HTTP=https://goerli-sequencer.base.org
       - OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
       - OP_NODE_L2_ENGINE_AUTH_RAW=688f5d737bad920bdfb2fc2f488d6b6209eebda1dae949a8de91398d932c517a # for localdev only
       # - OP_GETH_ETH_STATS=nodename:secret@host:port # optional
@@ -42,7 +43,7 @@ services:
       - OP_NODE_RPC_ADDR=0.0.0.0
       - OP_NODE_RPC_PORT=8545
       - OP_NODE_SNAPSHOT_LOG=/tmp/op-node-snapshot-log
-      - OP_NODE_VERIFIER_L1_CONFS=0
+      - OP_NODE_VERIFIER_L1_CONFS=4
 #     OP_NODE_L1_TRUST_RPC allows for faster syncing, but should be used *only* if your L1 RPC node
 #     is fully trusted.  It also allows op-node to work with clients such as Erigon that do not
 #     support storage proofs.

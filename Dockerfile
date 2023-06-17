@@ -4,8 +4,8 @@ FROM golang:1.19 as op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism
-ENV COMMIT=09d23ee8995b7c318a4469a49276f9453535c6a9
-ENV CHECKSUM=593338d48967154182d07920fcaf51d18e8c6adb64485356b059e1a1f82fe941
+ENV COMMIT=a541c8a859d9258ad410598655f189de69adae19
+ENV CHECKSUM=a61e4e921c4ee83650eeff59d73aeae328b38728d54b2f4fd7f9387ef713b8a9
 ADD --checksum=sha256:$CHECKSUM $REPO/archive/$COMMIT.tar.gz ./
 
 RUN tar -xvf ./$COMMIT.tar.gz --strip-components=1 && \
@@ -17,8 +17,8 @@ FROM golang:1.19 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth
-ENV COMMIT=a84992a3b7c33f038ccc69e761bafeefcd605fd3
-ENV CHECKSUM=8d97c1292c67afb08c124fc1f6586f92ec127464e04749b80eed709de145df17
+ENV COMMIT=b5fecf58ec77909c70bd15b96b32b593af0b38ff
+ENV CHECKSUM=009ec82e9be9a8a444a4a587ded844c7336ed6c80c9029e9acd912578a477b0f
 ADD --checksum=sha256:$CHECKSUM $REPO/archive/$COMMIT.tar.gz ./
 
 RUN tar -xvf ./$COMMIT.tar.gz --strip-components=1 && \
