@@ -5,6 +5,7 @@ services:
       - 8545:8545
       - 8546:8546
       - 30303:30303
+      - 7301:6060 # metrics
     command: [ "sh", "./geth-entrypoint" ]
     volumes:
       - "./geth-data:/data"
