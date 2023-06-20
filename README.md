@@ -49,7 +49,7 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 
 ### Usage
 
-1. Ensure you have an Ethereum Goerli L1 full node RPC available (not Base Goerli), and set `OP_NODE_L1_ETH_RPC` (in `docker-compose.yml` if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
+1. Ensure you have an Ethereum L1 full node RPC available (not Base), and set `OP_NODE_L1_ETH_RPC` (in the `.env.*` file if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
 2. Run:
 
 ```

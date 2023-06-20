@@ -53,9 +53,9 @@ fi
 	--ws.port="$WS_PORT" \
 	--ws.origins="*" \
 	--ws.api=debug,eth,txpool,net,engine \
-  --metrics \
-  --metrics.addr=0.0.0.0 \
-  --metrics.port="$METRICS_PORT" \
+	--metrics \
+	--metrics.addr=0.0.0.0 \
+	--metrics.port="$METRICS_PORT" \
 	--syncmode=full \
 	--gcmode=archive \
 	--nodiscover \
