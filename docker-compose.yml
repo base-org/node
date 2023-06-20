@@ -9,7 +9,9 @@ services:
       - 7301:6060       # metrics
     command: [ "sh", "./geth-entrypoint" ]
     env_file:
-      - .env.goerli
+      # select your network here:
+#      - .env.goerli
+#      - .env.mainnet
   node:
     build: .
     depends_on:
@@ -22,4 +24,6 @@ services:
       - 6060:6060     # pprof
     command: [ "sh", "./op-node-entrypoint" ]
     env_file:
-      - .env.goerli
+      # select your network here:
+#      - .env.goerli
+#      - .env.mainnet

@@ -37,3 +37,4 @@ COPY --from=geth /app/build/bin/geth ./
 COPY geth-entrypoint .
 COPY op-node-entrypoint .
 COPY goerli ./goerli
+COPY mainnet ./mainnet

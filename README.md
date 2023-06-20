@@ -45,12 +45,13 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 | Ethereum Network | Status |
 | ---------------- | ------ |
 | Goerli testnet   | ✅     |
-| Mainnet          | 🚧     |
+| Mainnet          | ✅     |
 
 ### Usage
 
 1. Ensure you have an Ethereum L1 full node RPC available (not Base), and set `OP_NODE_L1_ETH_RPC` (in the `.env.*` file if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
-2. Run:
+2. Uncomment the line relevant to your network (`.env.goerli` or `.env.mainet`) under the 2 `env_file` keys in `docker-compose.yml`.  
+3. Run:
 
 ```
 docker compose up --build
