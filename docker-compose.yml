@@ -7,8 +7,6 @@ services:
       - 30303:30303
       - 7301:6060 # metrics
     command: [ "sh", "./geth-entrypoint" ]
-    volumes:
-      - "./geth-data:/data"
     env_file:
       - .env.goerli
   node:
