@@ -4,11 +4,11 @@ FROM golang:1.19 as op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism
-ENV COMMIT=a541c8a859d9258ad410598655f189de69adae19
-ENV CHECKSUM=a61e4e921c4ee83650eeff59d73aeae328b38728d54b2f4fd7f9387ef713b8a9
-ADD --checksum=sha256:$CHECKSUM $REPO/archive/$COMMIT.tar.gz ./
+ENV VERSION=v1.1.0
+ENV CHECKSUM=f84bbf1b069dc2f2570c3f6989ae464cd3ede12faf7f4f6796e97380de7f8923
+ADD --checksum=sha256:$CHECKSUM $REPO/archive/op-node/$VERSION.tar.gz ./
 
-RUN tar -xvf ./$COMMIT.tar.gz --strip-components=1 && \
+RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
     cd op-node && \
     make op-node
 
@@ -17,11 +17,11 @@ FROM golang:1.19 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth
-ENV COMMIT=b5fecf58ec77909c70bd15b96b32b593af0b38ff
-ENV CHECKSUM=009ec82e9be9a8a444a4a587ded844c7336ed6c80c9029e9acd912578a477b0f
-ADD --checksum=sha256:$CHECKSUM $REPO/archive/$COMMIT.tar.gz ./
+ENV VERSION=v1.101105.3
+ENV CHECKSUM=1749e8a8aaaccfc8a03e4983f263cd9834788039c9f2187c93af4a27a08dc199
+ADD --checksum=sha256:$CHECKSUM $REPO/archive/$VERSION.tar.gz ./
 
-RUN tar -xvf ./$COMMIT.tar.gz --strip-components=1 && \
+RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
     go run build/ci.go install -static ./cmd/geth
 
 FROM golang:1.19
