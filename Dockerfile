@@ -18,7 +18,7 @@ WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth
 ENV VERSION=v1.101106.0-rc.3
-ENV CHECKSUM=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ENV CHECKSUM=0d4e95ec9d11f506a84e5b23d1c2b3c6c657612fa7ce1760e4df4b35ed1b52a7
 ADD --checksum=sha256:$CHECKSUM $REPO/archive/$VERSION.tar.gz ./
 
 RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
