@@ -2,10 +2,11 @@ services:
   geth: # this is Optimism's geth client
     build: .
     ports:
-      - 8545:8545
-      - 8546:8546
-      - 30303:30303
-      - 7301:6060 # metrics
+      - 8545:8545       # RPC
+      - 8546:8546       # websocket
+      - 30303:30303     # P2P TCP (currently unused)
+      - 30303:30303/udp # P2P UDP (currently unused)
+      - 7301:6060       # metrics
     command: [ "sh", "./geth-entrypoint" ]
     env_file:
       - .env.goerli
@@ -14,10 +15,11 @@ services:
     depends_on:
       - geth
     ports:
-      - 7545:8545
-      - 9222:9222
-      - 7300:7300 # metrics
-      - 6060:6060
+      - 7545:8545     # RPC
+      - 9222:9222     # P2P TCP
+      - 9222:9222/udp # P2P UDP
+      - 7300:7300     # metrics
+      - 6060:6060     # pprof
     command: [ "sh", "./op-node-entrypoint" ]
     env_file:
       - .env.goerli
