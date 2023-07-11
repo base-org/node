@@ -4,8 +4,8 @@ FROM golang:1.19 as op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism
-ENV VERSION=v1.1.0
-ENV CHECKSUM=f84bbf1b069dc2f2570c3f6989ae464cd3ede12faf7f4f6796e97380de7f8923
+ENV VERSION=v1.1.1
+ENV CHECKSUM=c0f3dbce8729016103b8390f9ee81089cd858242df6a45a42c59555f1c9e9106
 ADD --checksum=sha256:$CHECKSUM $REPO/archive/op-node/$VERSION.tar.gz ./
 
 RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
@@ -17,8 +17,8 @@ FROM golang:1.19 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth
-ENV VERSION=v1.101106.0-rc.3
-ENV CHECKSUM=0d4e95ec9d11f506a84e5b23d1c2b3c6c657612fa7ce1760e4df4b35ed1b52a7
+ENV VERSION=v1.101106.0
+ENV CHECKSUM=0273ea3226147ba5b04c1a6eff2d9da48e6bbff3a348b33fe13e7e34d88ba411
 ADD --checksum=sha256:$CHECKSUM $REPO/archive/$VERSION.tar.gz ./
 
 RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
