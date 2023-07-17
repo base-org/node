@@ -35,7 +35,7 @@ if [ "${OP_GETH_ALLOW_UNPROTECTED_TXS+x}" = x ]; then
 	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rpc.allow-unprotected-txs=$OP_GETH_ALLOW_UNPROTECTED_TXS"
 fi
 
-./geth \
+exec ./geth \
 	--datadir="$GETH_DATA_DIR" \
 	--verbosity="$VERBOSITY" \
 	--http \
