@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   geth: # this is Optimism's geth client
     build: .
