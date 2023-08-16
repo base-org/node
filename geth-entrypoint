@@ -11,6 +11,7 @@ WS_PORT="${WS_PORT:-8546}"
 AUTHRPC_PORT="${AUTHRPC_PORT:-8551}"
 METRICS_PORT="${METRICS_PORT:-6060}"
 HOST_IP="0.0.0.0"
+P2P_PORT="${P2P_PORT:-30303}"
 ADDITIONAL_ARGS=""
 
 mkdir -p $GETH_DATA_DIR
@@ -63,4 +64,5 @@ exec ./geth \
 	--nat=extip:$HOST_IP \
 	--networkid="$CHAIN_ID" \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
+        --port="$P2P_PORT" \
 	$ADDITIONAL_ARGS # intentionally unquoted
