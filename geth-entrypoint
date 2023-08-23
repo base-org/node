@@ -64,5 +64,5 @@ exec ./geth \
 	--nat=extip:$HOST_IP \
 	--networkid="$CHAIN_ID" \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
-        --port="$P2P_PORT" \
+	--port="$P2P_PORT" \
 	$ADDITIONAL_ARGS # intentionally unquoted
