@@ -1,28 +1,34 @@
-# syntax=docker/dockerfile:1-labs
 FROM golang:1.19 as op
 
 WORKDIR /app
 
-ENV REPO=https://github.com/ethereum-optimism/optimism
+ENV REPO=https://github.com/ethereum-optimism/optimism.git
 ENV VERSION=v1.1.1
-ENV CHECKSUM=c0f3dbce8729016103b8390f9ee81089cd858242df6a45a42c59555f1c9e9106
-ADD --checksum=sha256:$CHECKSUM $REPO/archive/op-node/$VERSION.tar.gz ./
+# for verification:
+ENV COMMIT=89ed69d80bbec7f2b1dd69e7e48cb7119839d58a
 
-RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
-    cd op-node && \
+RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
+    git switch -c branch-$VERSION && \
+    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+
+RUN cd op-node && \
     make op-node
 
 FROM golang:1.19 as geth
 
 WORKDIR /app
 
-ENV REPO=https://github.com/ethereum-optimism/op-geth
+ENV REPO=https://github.com/ethereum-optimism/op-geth.git
 ENV VERSION=v1.101200.1-rc.2
-ENV CHECKSUM=acdd027c85cf2edaec198f888a543445821182eaef461bc9d1a32527bd186ee3
-ADD --checksum=sha256:$CHECKSUM $REPO/archive/$VERSION.tar.gz ./
+# for verification:
+ENV COMMIT=368310232f16b7697d3a79ea7f946f0b2b21ab3f
 
-RUN tar -xvf ./$VERSION.tar.gz --strip-components=1 && \
-    go run build/ci.go install -static ./cmd/geth
+# avoid depth=1, so the geth build can read tags
+RUN git clone $REPO --branch $VERSION --single-branch . && \
+    git switch -c branch-$VERSION && \
+    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+
+RUN go run build/ci.go install -static ./cmd/geth
 
 FROM golang:1.19
 
