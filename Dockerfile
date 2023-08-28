@@ -33,7 +33,7 @@ RUN go run build/ci.go install -static ./cmd/geth
 FROM golang:1.19
 
 RUN apt-get update && \
-    apt-get install -y jq curl && \
+    apt-get install -y jq curl dumb-init && \
     rm -rf /var/lib/apt/lists
 
 WORKDIR /app
@@ -44,3 +44,5 @@ COPY geth-entrypoint .
 COPY op-node-entrypoint .
 COPY goerli ./goerli
 COPY mainnet ./mainnet
+
+ENTRYPOINT ["dumb-init"]
