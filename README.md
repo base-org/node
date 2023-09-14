@@ -32,7 +32,7 @@ This repository contains the relevant Docker builds to run your own node on the 
 We recommend you have this configuration to run a node:
 
 - at least 16 GB RAM
-- an SSD drive with at least 100 GB free
+- an SSD drive with at least 1 TB free
 
 ### Troubleshooting
 
@@ -76,6 +76,29 @@ services:
     volumes:
       - $HOME/data/base:/data
 ```
+
+### Downloading Snapshot
+
+For testnet or mainnet, run the following codes inside the data folder and wait for it to load
+
+```
+cd deta
+```
+
+Testnet
+
+```
+wget -O - https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/latest) | tar -zxf-
+```
+
+Mainnet
+
+```
+wget -O - https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/latest) | tar -zxf-
+```
+
+Note: Downloading the snapshot takes nearly 500GB (for mainnet). You might use `nohup` command for background execution to prevent terminal disconnection. 
+
 
 ### Syncing
 
