@@ -82,7 +82,7 @@ services:
 For testnet or mainnet, run the following codes inside the data folder and wait for it to load
 
 ```
-cd deta
+cd data
 ```
 
 Testnet
