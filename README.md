@@ -89,6 +89,42 @@ $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Cont
    jq -r .result.unsafe_l2.timestamp))/60)) minutes
 ```
 
+### Pruning op-geth
+
+1. Stop both op-geth & op-node
+
+```
+docker-compose stop
+```
+
+2. Making sure the containers properly exited
+
+```
+docker-compose ps -a
+```
+
+3. Run prune command (with detached)
+
+```
+docker-compose run -d geth /app/geth snapshot prune-state --datadir=/data
+```
+stdout: [container id]
+
+4. Check the log for properly exiting the pruning
+note: this will take several hours and may look like it's frozen at times. It's not frozen - just leave it until it finishes.
+
+```
+docker logs -f --tail 100 [container id]
+```
+
+5. Start the op-node and op-geth services again
+
+```
+docker-compose start
+```
+
+
+
 ## Disclaimer
 
 We’re excited for you to build on Base 🔵 — but we want to make sure that you understand the nature of the the node software and smart contracts offered here.
