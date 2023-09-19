@@ -32,7 +32,7 @@ This repository contains the relevant Docker builds to run your own node on the 
 We recommend you have this configuration to run a node:
 
 - at least 16 GB RAM
-- an SSD drive with at least 500 GB free
+- an SSD drive with at least 1 TB free
 
 ### Troubleshooting
 
