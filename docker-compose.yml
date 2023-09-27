@@ -13,6 +13,7 @@ services:
     env_file:
       # select your network here:
 #      - .env.goerli
+#      - .env.sepolia
 #      - .env.mainnet
   node:
     build: .
@@ -28,4 +29,5 @@ services:
     env_file:
       # select your network here:
 #      - .env.goerli
+#      - .env.sepolia
 #      - .env.mainnet
