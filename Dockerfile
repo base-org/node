@@ -19,7 +19,7 @@ FROM golang:1.19 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth.git
-ENV VERSION=v1.101200.1-rc.2
+ENV VERSION=v1.101200.1
 # for verification:
 ENV COMMIT=368310232f16b7697d3a79ea7f946f0b2b21ab3f
 
