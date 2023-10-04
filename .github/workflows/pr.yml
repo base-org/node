@@ -1,0 +1,16 @@
+name: Build Image
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build the Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
