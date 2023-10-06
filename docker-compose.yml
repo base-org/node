@@ -9,7 +9,7 @@ services:
       - 30303:30303     # P2P TCP (currently unused)
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
-    command: [ "sh", "./geth-entrypoint" ]
+    command: [ "bash", "./geth-entrypoint" ]
     env_file:
       # select your network here:
 #      - .env.goerli
@@ -25,7 +25,7 @@ services:
       - 9222:9222/udp # P2P UDP
       - 7300:7300     # metrics
       - 6060:6060     # pprof
-    command: [ "sh", "./op-node-entrypoint" ]
+    command: [ "bash", "./op-node-entrypoint" ]
     env_file:
       # select your network here:
 #      - .env.goerli
