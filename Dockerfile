@@ -33,15 +33,19 @@ RUN go run build/ci.go install -static ./cmd/geth
 FROM golang:1.19
 
 RUN apt-get update && \
-    apt-get install -y jq curl && \
+    apt-get install -y jq curl supervisor && \
     rm -rf /var/lib/apt/lists
+RUN mkdir -p /var/log/supervisor
 
 WORKDIR /app
 
 COPY --from=op /app/op-node/bin/op-node ./
 COPY --from=geth /app/build/bin/geth ./
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY geth-entrypoint .
 COPY op-node-entrypoint .
 COPY goerli ./goerli
 COPY sepolia ./sepolia
 COPY mainnet ./mainnet
+
+CMD ["/usr/bin/supervisord"]

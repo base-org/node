@@ -78,6 +78,17 @@ services:
       - $HOME/data/base:/data
 ```
 
+#### Running in single container with `supervisord`
+
+If you'd like to run the node in a single container instead of `docker-compose`, you can use the `supervisord` entrypoint.
+This is useful for running the node in a Kubernetes cluster, for example.
+
+Note that you'll need to override some of the default configuration that assumes a multi-container environment (`OP_NODE_L2_ENGINE_RPC`) and any port conflicts (`OP_NODE_RPC_PORT`).
+Example:
+```
+docker run --env-file .env.goerli -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -e OP_NODE_RPC_PORT=7545 ghcr.io/base-org/node:latest
+```
+
 ### Snapshots
 
 If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's possible to always get the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every hour.
