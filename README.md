@@ -59,7 +59,7 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 docker compose up --build
 ```
 
-3. You should now be able to `curl` your Base node:
+4. You should now be able to `curl` your Base node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' \
@@ -68,7 +68,7 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["late
 
 Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
-You can map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose.yaml`:
+5. Map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose.yaml`:
 
 ```yaml
 services:
@@ -77,6 +77,8 @@ services:
     volumes:
       - $HOME/data/base:/data
 ```
+
+This is where your node data will be stored. This is for example where you would extract your [snapshot](#snapshots) to.
 
 #### Running in single container with `supervisord`
 
@@ -91,7 +93,7 @@ docker run --env-file .env.goerli -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -
 
 ### Snapshots
 
-If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's possible to always get the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every hour.
+If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's always possible to download and decompress the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every hour.
 
 **Mainnet**
 
@@ -104,6 +106,8 @@ wget https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl ht
 ```
 wget https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
 ```
+
+Use `tar -xvf` to decompress the downloaded archive to the local data directory you previously configured a volume mapping for.
 
 ### Syncing
 
