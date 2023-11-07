@@ -3,9 +3,6 @@ set -eu
 
 VERBOSITY=${GETH_VERBOSITY:-3}
 GETH_DATA_DIR=/data
-GETH_CHAINDATA_DIR="$GETH_DATA_DIR/geth/chaindata"
-OP_GETH_GENESIS_FILE_PATH="${OP_GETH_GENESIS_FILE_PATH:-/genesis.json}"
-CHAIN_ID=$(jq -r .config.chainId < "$OP_GETH_GENESIS_FILE_PATH")
 RPC_PORT="${RPC_PORT:-8545}"
 WS_PORT="${WS_PORT:-8546}"
 AUTHRPC_PORT="${AUTHRPC_PORT:-8551}"
@@ -14,17 +11,12 @@ HOST_IP="0.0.0.0"
 P2P_PORT="${P2P_PORT:-30303}"
 ADDITIONAL_ARGS=""
 
-mkdir -p $GETH_DATA_DIR
-
-if [ ! -d "$GETH_CHAINDATA_DIR" ]; then
-	echo "$GETH_CHAINDATA_DIR missing, running init"
-	echo "Initializing genesis."
-	./geth --verbosity="$VERBOSITY" init \
-		--datadir="$GETH_DATA_DIR" \
-		"$OP_GETH_GENESIS_FILE_PATH"
-else
-	echo "$GETH_CHAINDATA_DIR exists."
+if [[ -z "$OP_NODE_NETWORK" ]]; then
+    echo "expected OP_NODE_NETWORK to be set" 1>&2
+    exit 1
 fi
+
+mkdir -p $GETH_DATA_DIR
 
 echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
@@ -34,10 +26,6 @@ fi
 
 if [ "${OP_GETH_ALLOW_UNPROTECTED_TXS+x}" = x ]; then
 	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rpc.allow-unprotected-txs=$OP_GETH_ALLOW_UNPROTECTED_TXS"
-fi
-
-if [ "${OP_NODE_NETWORK+x}" = x ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --op-network=$OP_NODE_NETWORK --rollup.superchain-upgrades"
 fi
 
 exec ./geth \
@@ -66,7 +54,8 @@ exec ./geth \
 	--nodiscover \
 	--maxpeers=100 \
 	--nat=extip:$HOST_IP \
-	--networkid="$CHAIN_ID" \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
+	--rollup.halt=major \
+	--op-network=$OP_NODE_NETWORK" \
 	--port="$P2P_PORT" \
 	$ADDITIONAL_ARGS # intentionally unquoted
