@@ -10,6 +10,7 @@ METRICS_PORT="${METRICS_PORT:-6060}"
 HOST_IP="0.0.0.0"
 P2P_PORT="${P2P_PORT:-30303}"
 ADDITIONAL_ARGS=""
+OP_GETH_GCMODE="${OP_GETH_GCMODE:-archive}"
 
 if [[ -z "$OP_NODE_NETWORK" ]]; then
     echo "expected OP_NODE_NETWORK to be set" 1>&2
@@ -26,6 +27,10 @@ fi
 
 if [ "${OP_GETH_ALLOW_UNPROTECTED_TXS+x}" = x ]; then
 	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rpc.allow-unprotected-txs=$OP_GETH_ALLOW_UNPROTECTED_TXS"
+fi
+
+if [ "${OP_GETH_STATE_SCHEME+x}" = x ]; then
+  ADDITIONAL_ARGS="$ADDITIONAL_ARGS --state.scheme=$OP_GETH_STATE_SCHEME"
 fi
 
 exec ./geth \
@@ -50,12 +55,12 @@ exec ./geth \
 	--metrics.addr=0.0.0.0 \
 	--metrics.port="$METRICS_PORT" \
 	--syncmode=full \
-	--gcmode=archive \
+	--gcmode="$OP_GETH_GCMODE" \
 	--nodiscover \
 	--maxpeers=100 \
 	--nat=extip:$HOST_IP \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
 	--rollup.halt=major \
-	--op-network=$OP_NODE_NETWORK" \
+	--op-network="$OP_NODE_NETWORK" \
 	--port="$P2P_PORT" \
 	$ADDITIONAL_ARGS # intentionally unquoted
