@@ -61,6 +61,6 @@ exec ./geth \
 	--nat=extip:$HOST_IP \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
 	--rollup.halt=major \
-	--op-network=$OP_NODE_NETWORK" \
+	--op-network="$OP_NODE_NETWORK" \
 	--port="$P2P_PORT" \
 	$ADDITIONAL_ARGS # intentionally unquoted
