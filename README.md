@@ -95,16 +95,28 @@ docker run --env-file .env.goerli -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -
 
 If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's always possible to download and decompress the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every hour.
 
+#### Install aria2
+
+Debian/Ubuntu:
+```
+apt install aria2
+```
+CentOS:
+```
+yum install epel-release -y
+yum install aria2 -y
+```
+
 **Mainnet**
 
 ```
-wget https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
+aria2c -s16 -x16 https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
 ```
 
 **Testnet**
 
 ```
-wget https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
+aria2c -s16 -x16  https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
 ```
 
 Use `tar -xvf` to decompress the downloaded archive to the local data directory you previously configured a volume mapping for.
