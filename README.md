@@ -93,21 +93,7 @@ docker run --env-file .env.goerli -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -
 
 ### Snapshots
 
-If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's always possible to download and decompress the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every hour.
-
-**Mainnet**
-
-```
-wget https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-mainnet-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
-```
-
-**Testnet**
-
-```
-wget https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/$(curl https://base-goerli-archive-snapshots.s3.us-east-1.amazonaws.com/latest)
-```
-
-Use `tar -xvf` to decompress the downloaded archive to the local data directory you previously configured a volume mapping for.
+You can fetch the latest snapshots via the URLs provided in the [Base docs](https://docs.base.org/guides/run-a-base-node/#snapshots).
 
 ### Syncing
 
