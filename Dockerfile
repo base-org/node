@@ -3,9 +3,9 @@ FROM golang:1.20 as op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism.git
-ENV VERSION=v1.3.1
+ENV VERSION=v1.4.0
 # for verification:
-ENV COMMIT=74ff044a9869e440aa270b65681182950576004e
+ENV COMMIT=eb0d89ddaa57e6335d92dfa379f6036847c5cc18
 
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
@@ -19,9 +19,9 @@ FROM golang:1.20 as geth
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/op-geth.git
-ENV VERSION=v1.101304.1
+ENV VERSION=v1.101304.2
 # for verification:
-ENV COMMIT=ed8e9f54ed0a5069e77ea34895ff12a9ac4ca17f
+ENV COMMIT=c6b416da212fe6713ff40b8092303d0035405a47
 
 # avoid depth=1, so the geth build can read tags
 RUN git clone $REPO --branch $VERSION --single-branch . && \
