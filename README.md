@@ -68,17 +68,13 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["late
 
 Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
-5. Map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose.yaml`:
 
-```yaml
-services:
-  geth: # this is Optimism's geth client
-    ...
-    volumes:
-      - $HOME/data/base:/data
-```
+#### Persisting Data
 
-This is where your node data will be stored. This is for example where you would extract your [snapshot](#snapshots) to.
+By default, the data directory is stored in `${PROJECT_ROOT}/geth-data`. You can override this by modifying the value of
+`GETH_HOST_DATA_DIR` variable in the [`.env`](./.env) file.
+
+To load a [snapshot](#snapshots) you can extract the snapshot into the `$GETH_HOST_DATA_DIR` folder.
 
 #### Running in single container with `supervisord`
 
