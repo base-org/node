@@ -23,6 +23,7 @@
   "l1_chain_id": 1,
   "l2_chain_id": 8453,
   "regolith_time": 0,
+  "canyon_time": 1704992401,
   "batch_inbox_address": "0xff00000000000000000000000000000000008453",
   "deposit_contract_address": "0x49048044d57e1c92a77f79988d21fa8faf74e97e",
   "l1_system_config_address": "0x73a79fab69143498ed3712e519a88a918e1f4072"
