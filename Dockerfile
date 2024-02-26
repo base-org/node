@@ -12,7 +12,7 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
 
 RUN cd op-node && \
-    make op-node
+    make VERSION=$VERSION op-node
 
 FROM golang:1.21 as geth
 
