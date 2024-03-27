@@ -29,11 +29,11 @@ This repository contains the relevant Docker builds to run your own node on the 
 
 ### Hardware requirements
 
-We recommend you have this configuration to run a node:
+We recommend you have this hardware configuration to run a node:
 
-- 8-Core CPU
-- at least 16 GB RAM
-- an SSD drive with at least 2.5 TB free
+- a modern multi-core CPU with good single-core performance
+- at least 16 GB RAM (32 GB recommended)
+- a high performance SSD drive with at least 4 TB free (NVME recommended)
 
 ### Troubleshooting
 
