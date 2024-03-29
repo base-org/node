@@ -67,4 +67,5 @@ exec ./geth \
     --rollup.halt=major \
     --op-network="$OP_NODE_NETWORK" \
     --port="$P2P_PORT" \
+    --rollup.disabletxpoolgossip=true \
     $ADDITIONAL_ARGS # intentionally unquoted
