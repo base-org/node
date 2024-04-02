@@ -46,7 +46,6 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 
 | Ethereum Network | Status |
 |------------------| ------ |
-| Goerli testnet   | ✅     |
 | Sepolia testnet  | ✅     |
 | Mainnet          | ✅     |
 
