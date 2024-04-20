@@ -91,6 +91,10 @@ docker run --env-file .env.sepolia -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 
 
 You can fetch the latest snapshots via the URLs provided in the [Base docs](https://docs.base.org/guides/run-a-base-node/#snapshots).
 
+The tar'd directory structure (for mainnet) looks like: `snapshots/mainnet/download/geth` and the snapshots directory (as opposed to the child geth directory) is meant to exist in the root of the geth data directory. The geth data directory is set by the `GETH_HOST_DATA_DIR` env var, which can be set in the .env file.
+
+So, cd into your geth data dir, download the snapshot, and untar it right there.
+
 ### Syncing
 
 Sync speed depends on your L1 node, as the majority of the chain is derived from data submitted to the L1. You can check your syncing status using the `optimism_syncStatus` RPC on the `op-node` container. Example:
