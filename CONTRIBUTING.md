@@ -25,7 +25,7 @@ to improve the project, great! All we ask is that you take the time to write a
 clear and concise explanation of what need you are trying to solve. If you have
 thoughts on _how_ it can be solved, include those too!
 
-The best way to see a feature added, however, is to submit a pull request.
+However, the best way to have a feature added is to submit a pull request.
 
 ## Pull Requests
 
