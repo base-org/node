@@ -33,7 +33,7 @@ We recommend you have this hardware configuration to run a node:
 
 - a modern multi-core CPU with good single-core performance
 - at least 16 GB RAM (32 GB recommended)
-- a high performance SSD drive with at least 4 TB free (NVME recommended)
+- a high performance SSD drive with at least 700GB (full node) or 4TB free (archive node)
 
 ### Troubleshooting
 
