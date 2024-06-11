@@ -44,10 +44,10 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 
 ### Supported networks
 
-| Ethereum Network | Status |
-| ---------------- | ------ |
-| Sepolia testnet  | ✅     |
-| Mainnet          | ✅     |
+| Base Network      | Status |
+|-------------------| ------ |
+| Testnet (Sepolia) | ✅     |
+| Mainnet           | ✅     |
 
 ### Usage
 
