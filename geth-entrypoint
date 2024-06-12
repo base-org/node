@@ -7,7 +7,7 @@ RPC_PORT="${RPC_PORT:-8545}"
 WS_PORT="${WS_PORT:-8546}"
 AUTHRPC_PORT="${AUTHRPC_PORT:-8551}"
 METRICS_PORT="${METRICS_PORT:-6060}"
-HOST_IP="0.0.0.0"
+HOST_IP="" # put your external IP address here and open port 30303 to improve peer connectivity
 P2P_PORT="${P2P_PORT:-30303}"
 ADDITIONAL_ARGS=""
 OP_GETH_GCMODE="${OP_GETH_GCMODE:-full}"
@@ -38,6 +38,10 @@ if [ "${OP_GETH_BOOTNODES+x}" = x ]; then
     ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$OP_GETH_BOOTNODES"
 fi
 
+if [ "${HOST_IP:+x}" = x]; then
+	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --nat=extip:$HOST_IP
+fi 
+
 exec ./geth \
     --datadir="$GETH_DATA_DIR" \
     --verbosity="$VERBOSITY" \
@@ -62,7 +66,6 @@ exec ./geth \
     --syncmode="$OP_GETH_SYNCMODE" \
     --gcmode="$OP_GETH_GCMODE" \
     --maxpeers=100 \
-    --nat=extip:$HOST_IP \
     --rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
     --rollup.halt=major \
     --op-network="$OP_NODE_NETWORK" \
