@@ -27,7 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch: [ linux/amd64, linux/arm64 ]
+        include:
+          - arch: linux/amd64
+            features: jemalloc,asm-keccak,optimism
+          - arch: linux/arm64
+            features: jemalloc,optimism
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,4 +45,6 @@ jobs:
           context: .
           file: Dockerfile.reth
           push: false
+          build-args: |
+            FEATURES=${{ matrix.features }}
           platforms: ${{ matrix.arch }}

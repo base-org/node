@@ -16,6 +16,8 @@ RUN cd op-node && \
 
 FROM rust AS reth
 
+ARG FEATURES=jemalloc,asm-keccak,optimism
+
 WORKDIR /app
 
 RUN apt-get update && apt-get -y upgrade && apt-get install -y git libclang-dev pkg-config curl build-essential

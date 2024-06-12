@@ -49,6 +49,13 @@ jobs:
           platforms: linux/amd64,linux/arm64
   reth:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: linux/amd64
+            features: jemalloc,asm-keccak,optimism
+          - arch: linux/arm64
+            features: jemalloc,optimism
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -78,4 +85,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64,linux/arm64
+          build-args: |
+            FEATURES=${{ matrix.features }}
+          platforms: ${{ matrix.arch }}
