@@ -39,7 +39,7 @@ if [ "${OP_GETH_BOOTNODES+x}" = x ]; then
 fi
 
 if [ "${HOST_IP:+x}" = x]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --nat=extip:$HOST_IP
+	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --nat=extip:$HOST_IP"
 fi 
 
 exec ./geth \
