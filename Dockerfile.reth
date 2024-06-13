@@ -14,7 +14,7 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
 RUN cd op-node && \
     make VERSION=$VERSION op-node
 
-FROM rust AS reth
+FROM rust:1.78 AS reth
 
 ARG FEATURES=jemalloc,asm-keccak,optimism
 
@@ -26,9 +26,9 @@ ENV REPO=https://github.com/paradigmxyz/reth.git
 ENV COMMIT=1c148e7f030f0b6b3610564e0142c799756666f4
 
 RUN git clone $REPO . && git checkout $COMMIT
-RUN cargo build --bin op-reth --locked --features jemalloc,optimism --profile maxperf
+RUN cargo build --bin op-reth --locked --features $FEATURES --profile maxperf
 
-FROM golang:1.21
+FROM ubuntu:22.04
 
 RUN apt-get update && \
     apt-get install -y jq curl supervisor && \
