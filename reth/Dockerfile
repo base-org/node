@@ -23,7 +23,7 @@ WORKDIR /app
 RUN apt-get update && apt-get -y upgrade && apt-get install -y git libclang-dev pkg-config curl build-essential
 
 ENV REPO=https://github.com/paradigmxyz/reth.git
-ENV COMMIT=1c148e7f030f0b6b3610564e0142c799756666f4
+ENV COMMIT=e5111f03396f661bdff69d04047d0c076bad75f3
 
 RUN git clone $REPO . && git checkout $COMMIT
 RUN cargo build --bin op-reth --locked --features $FEATURES --profile maxperf
