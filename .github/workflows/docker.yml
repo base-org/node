@@ -9,6 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  NAMESPACE: ghcr.io/base-org
   GETH_DEPRECATED_IMAGE_NAME: node
   GETH_IMAGE_NAME: node-geth
   RETH_IMAGE_NAME: node-reth
@@ -32,8 +33,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ env.GETH_DEPRECATED_IMAGE_NAME }}
-            ${{ env.REGISTRY }}/${{ env.GETH_IMAGE_NAME }}
+            ${{ env.NAMESPACE }}/${{ env.GETH_DEPRECATED_IMAGE_NAME }}
+            ${{ env.NAMESPACE }}/${{ env.GETH_IMAGE_NAME }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -72,7 +73,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ env.RETH_IMAGE_NAME }}
+            ${{ env.NAMESPACE }}/${{ env.RETH_IMAGE_NAME }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
