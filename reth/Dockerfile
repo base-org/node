@@ -1,4 +1,4 @@
-FROM golang:1.21 as op
+FROM golang:1.21 AS op
 
 WORKDIR /app
 
@@ -14,21 +14,19 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
 RUN cd op-node && \
     make VERSION=$VERSION op-node
 
-FROM golang:1.21 as geth
+FROM rust:1.78 AS reth
+
+ARG FEATURES=jemalloc,asm-keccak,optimism
 
 WORKDIR /app
 
-ENV REPO=https://github.com/ethereum-optimism/op-geth.git
-ENV VERSION=v1.101315.1
-# for verification:
-ENV COMMIT=3fbae78d638d1b903e702a14f98644c1103ae1b3
+RUN apt-get update && apt-get -y upgrade && apt-get install -y git libclang-dev pkg-config curl build-essential
 
-# avoid depth=1, so the geth build can read tags
-RUN git clone $REPO --branch $VERSION --single-branch . && \
-    git switch -c branch-$VERSION && \
-    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+ENV REPO=https://github.com/paradigmxyz/reth.git
+ENV COMMIT=1c148e7f030f0b6b3610564e0142c799756666f4
 
-RUN go run build/ci.go install -static ./cmd/geth
+RUN git clone $REPO . && git checkout $COMMIT
+RUN cargo build --bin op-reth --locked --features $FEATURES --profile maxperf
 
 FROM ubuntu:22.04
 
@@ -40,9 +38,9 @@ RUN mkdir -p /var/log/supervisor
 WORKDIR /app
 
 COPY --from=op /app/op-node/bin/op-node ./
-COPY --from=geth /app/build/bin/geth ./
+COPY --from=reth /app/target/maxperf/op-reth ./
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY geth-entrypoint ./execution-entrypoint
+COPY ./reth/reth-entrypoint ./execution-entrypoint
 COPY op-node-entrypoint .
 
 CMD ["/usr/bin/supervisord"]

@@ -17,7 +17,6 @@ echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
 exec ./op-reth node \
   -vvv \
-  --config /app/reth.toml \
   --datadir="$RETH_DATA_DIR" \
   --log.stdout.format log-fmt \
   --ws \

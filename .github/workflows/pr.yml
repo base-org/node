@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: Dockerfile.geth
+          file: geth/Dockerfile
           push: false
           platforms: ${{ matrix.arch }}
   reth:
@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: Dockerfile.reth
+          file: reth/Dockerfile
           push: false
           build-args: |
             FEATURES=${{ matrix.features }}

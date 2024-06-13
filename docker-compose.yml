@@ -2,14 +2,14 @@ services:
   execution:
     build:
       context: .
-      dockerfile: Dockerfile.geth
+      dockerfile: ${CLIENT}/Dockerfile
     ports:
       - "8545:8545"       # RPC
       - "8546:8546"       # websocket
       - "7301:6060"       # metrics
     command: [ "bash", "./execution-entrypoint" ]
     volumes:
-        - ${GETH_HOST_DATA_DIR}:/data
+        - ${HOST_DATA_DIR}:/data
     env_file:
       # select your network here:
 #      - .env.sepolia
@@ -17,7 +17,7 @@ services:
   node:
     build:
       context: .
-      dockerfile: Dockerfile.geth
+      dockerfile: ${CLIENT}/Dockerfile
     depends_on:
       - execution
     ports:
