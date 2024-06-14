@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  geth:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,5 +20,31 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: geth/Dockerfile
           push: false
+          platforms: ${{ matrix.arch }}
+  reth:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: linux/amd64
+            features: jemalloc,asm-keccak,optimism
+          - arch: linux/arm64
+            features: jemalloc,optimism
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build the Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: reth/Dockerfile
+          push: false
+          build-args: |
+            FEATURES=${{ matrix.features }}
           platforms: ${{ matrix.arch }}
