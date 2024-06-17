@@ -56,7 +56,7 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 3. Run:
 
 ```
-docker compose up --build
+docker-compose up --build
 ```
 
 4. You should now be able to `curl` your Base node:
