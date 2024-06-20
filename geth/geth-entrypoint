@@ -38,7 +38,7 @@ if [ "${OP_GETH_BOOTNODES+x}" = x ]; then
     ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$OP_GETH_BOOTNODES"
 fi
 
-if [ "${HOST_IP:+x}" = x]; then
+if [ "${HOST_IP:+x}" = x ]; then
 	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --nat=extip:$HOST_IP"
 fi 
 
