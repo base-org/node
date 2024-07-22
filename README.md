@@ -40,7 +40,7 @@ We recommend you have this hardware configuration to run a node:
 If you encounter problems with your node, please open a [GitHub issue](https://github.com/base-org/node/issues/new/choose) or reach out on our [Discord](https://discord.gg/buildonbase):
 
 - Once you've joined, in the Discord app go to `server menu` > `Linked Roles` > `connect GitHub` and connect your GitHub account so you can gain access to our developer channels
-- Report your issue in `#🛟|node-support`
+- Report your issue in `#🛟|developer-support` or `🛠｜node-operators`
 
 ### Supported networks
 
