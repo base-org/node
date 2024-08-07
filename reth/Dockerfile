@@ -20,9 +20,8 @@ WORKDIR /app
 
 RUN apt-get update && apt-get -y upgrade && apt-get install -y git libclang-dev pkg-config curl build-essential
 
-#TODO: Revert to upstream, once https://github.com/paradigmxyz/reth/pull/9105 is merged.
-ENV REPO=https://github.com/danyalprout/reth.git
-ENV COMMIT=c79cbf4a918480556bd37204942a2d69827fed9f
+ENV REPO=https://github.com/paradigmxyz/reth.git
+ENV COMMIT=29dc8fc05f74111c9ff67ddcd03638ee081b1dc0
 RUN git clone $REPO . && git checkout $COMMIT
 
 RUN cargo build --bin op-reth --locked --features $FEATURES --profile maxperf
