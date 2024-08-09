@@ -12,7 +12,7 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
 RUN cd op-node && \
     make VERSION=$VERSION op-node
 
-FROM rust:1.79 AS reth
+FROM rust:1.80 AS reth
 
 ARG FEATURES=jemalloc,asm-keccak,optimism
 
