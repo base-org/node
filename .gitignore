@@ -1,3 +1,4 @@
 /.idea/
 /geth-data/
 /reth-data/
+.DS_Store
