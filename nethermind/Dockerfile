@@ -19,12 +19,16 @@ ARG TARGETARCH
 
 WORKDIR /app
 
-ENV REPO=https://github.com/nethermindeth/nethermind
-ENV VERSION=1.28.0
-RUN git clone $REPO . && git checkout $VERSION
-
-RUN arch=$([ "$TARGETARCH" = "amd64" ] && echo "x64" || echo "$TARGETARCH") && \
-    dotnet publish src/Nethermind/Nethermind.Runner -c $BUILD_CONFIG -a $arch -o /publish --sc false 
+ENV REPO=https://github.com/NethermindEth/nethermind.git
+ENV VERSION=1.29.0
+ENV COMMIT=10412d1c3b502591db7d4bb80d26caf6045f165a
+RUN git clone $REPO --branch release/$VERSION --single-branch . && \
+    git switch -c branch-$VERSION 
+RUN bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+RUN TARGETARCH=${TARGETARCH#linux/} && \
+    arch=$([ "$TARGETARCH" = "amd64" ] && echo "x64" || echo "$TARGETARCH") && \
+    echo "Using architecture: $arch" && \
+    dotnet publish src/Nethermind/Nethermind.Runner -c $BUILD_CONFIG -a $arch -o /publish --sc false
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble
