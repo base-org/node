@@ -32,6 +32,10 @@ fi
 echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
 # Additional arguments based on environment variables
+if [ "${OP_NETHERMIND_BOOTNODES+x}" = x ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --Network.Bootnodes=$OP_NETHERMIND_BOOTNODES"
+fi
+
 if [[ -n "${OP_NETHERMIND_ETHSTATS_ENABLED:-}" ]]; then
     ADDITIONAL_ARGS="$ADDITIONAL_ARGS --EthStats.Enabled=$OP_NETHERMIND_ETHSTATS_ENABLED"
 fi
@@ -44,6 +48,7 @@ fi
 exec ./nethermind \
     --config="$OP_NODE_NETWORK" \
     --datadir="$NETHERMIND_DATA_DIR" \
+    --Optimism.SequencerUrl=$OP_SEQUENCER_HTTP \
     --log="$NETHERMIND_LOG_LEVEL" \
     --JsonRpc.Enabled=true \
     --JsonRpc.Host=0.0.0.0 \
