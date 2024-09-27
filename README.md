@@ -62,6 +62,15 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 docker compose up --build
 ```
 
+> [!NOTE]
+> To run the node using a supported client, you can use the following command:
+> `CLIENT=supported_client docker compose up --build`
+> 
+> Supported clients:
+> - geth
+> - reth
+> - nethermind
+
 4. You should now be able to `curl` your Base node:
 
 ```
