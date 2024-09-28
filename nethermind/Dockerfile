@@ -21,7 +21,7 @@ WORKDIR /app
 
 ENV REPO=https://github.com/NethermindEth/nethermind.git
 ENV VERSION=1.29.0
-ENV COMMIT=b8a5f1eb26fdee6e1ac8a952a574daac7667c13e
+ENV COMMIT=e324dae2a92e23f2cd351d81e9e46554591b2cef
 RUN git clone $REPO --branch release/$VERSION --single-branch . && \
     git switch -c release/$VERSION && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
