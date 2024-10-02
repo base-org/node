@@ -117,7 +117,10 @@ jobs:
       - name: Build and push the Docker image using buildx
         run: |
           # Convert labels to individual --label flags
-          labels=$(echo "${{ steps.meta.outputs.labels }}" | sed 's/^/--label "/; s/$/"/')
+          labels=""
+          while IFS= read -r line; do
+            labels="$labels --label \"$line\""
+          done <<< "${{ steps.meta.outputs.labels }}"
       
           # Run the docker buildx build command
           docker buildx build \
