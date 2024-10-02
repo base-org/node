@@ -106,6 +106,9 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Extract metadata for the Docker image
         id: meta
         uses: docker/metadata-action@v4
@@ -113,18 +116,14 @@ jobs:
           images: |
             ${{ env.NAMESPACE }}/${{ env.NETHERMIND_IMAGE_NAME }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and push the Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: nethermind/Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64,linux/arm64
-          build-args: |
-            BUILD_CONFIG=release
-            TARGETARCH=${{ matrix.platform }}
+      - name: Build and push the Docker image using buildx
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --file nethermind/Dockerfile \
+            --tag ${{ steps.meta.outputs.tags }} \
+            --label ${{ steps.meta.outputs.labels }} \
+            --build-arg BUILD_CONFIG=release \
+            --build-arg TARGETARCH=${{ matrix.platform }} \
+            --push \
+            .
