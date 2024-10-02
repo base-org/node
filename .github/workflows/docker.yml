@@ -121,15 +121,15 @@ jobs:
   
       - name: Build and push the Docker image using buildx
         run: |
-          # Convert labels to individual --label flags
+          # Convert labels to individual --label flags with proper quoting
           labels=""
           while IFS= read -r line; do
-            labels="$labels --label $line"
+            labels="$labels --label \"${line}\""
           done <<< "${{ steps.meta.outputs.labels }}"
-  
+
           # Debug: Print the constructed docker buildx build command
           echo "docker buildx build --platform ${{ matrix.platform }} --file nethermind/Dockerfile --tag ${{ steps.meta.outputs.tags }} $labels --build-arg BUILD_CONFIG=release --build-arg TARGETARCH=${{ matrix.platform }} . --push"
-  
+
           # Run the docker buildx build command
           docker buildx build \
             --platform ${{ matrix.platform }} \
@@ -139,4 +139,3 @@ jobs:
             --build-arg BUILD_CONFIG=release \
             --build-arg TARGETARCH=${{ matrix.platform }} \
             . --push
-
