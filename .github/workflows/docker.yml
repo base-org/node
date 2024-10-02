@@ -103,8 +103,6 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-        with:
-          platforms: linux/amd64,linux/arm64
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -125,5 +123,4 @@ jobs:
             --label ${{ steps.meta.outputs.labels }} \
             --build-arg BUILD_CONFIG=release \
             --build-arg TARGETARCH=${{ matrix.platform }} \
-            --push \
-            .
+            . --push
