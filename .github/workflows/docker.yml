@@ -121,15 +121,19 @@ jobs:
   
       - name: Build and push the Docker image using buildx
         run: |
-          cmd=("docker" "buildx" "build" "--platform" "${{ matrix.platform }}" "--file" "nethermind/Dockerfile" "--tag" "${{ steps.meta.outputs.tags }}")
-
+          TARGETARCH="${{ matrix.platform##linux/ }}"
+          
+          # Convert labels to individual --label flags with proper quoting
+          labels=""
           while IFS= read -r line; do
-            cmd+=("--label" "$line")
+            labels="$labels --label \"$line\""
           done <<< "${{ steps.meta.outputs.labels }}"
 
-          cmd+=("--build-arg" "BUILD_CONFIG=release")
-          cmd+=("--build-arg" "TARGETARCH=${{ matrix.platform }}")
-          cmd+=(".")
-          cmd+=("--push")
-          echo "${cmd[@]}"
-          "${cmd[@]}"
+          docker buildx build \
+            --platform "${{ matrix.platform }}" \
+            --file nethermind/Dockerfile \
+            --tag "${{ steps.meta.outputs.tags }}" \
+            $labels \
+            --build-arg BUILD_CONFIG=release \
+            --build-arg TARGETARCH="$TARGETARCH" \
+            . --push
