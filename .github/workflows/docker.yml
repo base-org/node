@@ -121,7 +121,7 @@ jobs:
   
       - name: Build and push the Docker image using buildx
         run: |
-          TARGETARCH="${{ matrix.platform##linux/ }}"
+          TARGETARCH=$(echo "${MATRIX_PLATFORM}" | sed 's/linux\///')
           
           # Convert labels to individual --label flags with proper quoting
           labels=""
