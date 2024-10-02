@@ -116,11 +116,15 @@ jobs:
 
       - name: Build and push the Docker image using buildx
         run: |
+          # Convert labels to individual --label flags
+          labels=$(echo "${{ steps.meta.outputs.labels }}" | sed 's/^/--label "/; s/$/"/')
+      
+          # Run the docker buildx build command
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --file nethermind/Dockerfile \
-            --tag ${{ steps.meta.outputs.tags }} \
-            --label ${{ steps.meta.outputs.labels }} \
+            --tag ghcr.io/base-org/node-nethermind:main \
+            $labels \
             --build-arg BUILD_CONFIG=release \
             --build-arg TARGETARCH=${{ matrix.platform }} \
             . --push
