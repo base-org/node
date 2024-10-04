@@ -119,21 +119,12 @@ jobs:
           images: |
             ${{ env.NAMESPACE }}/${{ env.NETHERMIND_IMAGE_NAME }}
   
-      - name: Build and push the Docker image using buildx
-        run: |
-          TARGETARCH=$(echo "${MATRIX_PLATFORM}" | sed 's/linux\///')
-          
-          # Convert labels to individual --label flags with proper quoting
-          labels=""
-          while IFS= read -r line; do
-            labels="$labels --label \"$line\""
-          done <<< "${{ steps.meta.outputs.labels }}"
-
-          docker buildx build \
-            --platform "${{ matrix.platform }}" \
-            --file nethermind/Dockerfile \
-            --tag "${{ steps.meta.outputs.tags }}" \
-            $labels \
-            --build-arg BUILD_CONFIG=release \
-            --build-arg TARGETARCH="$TARGETARCH" \
-            . --push
+      - name: Build and push the Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: nethermind/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64,linux/arm64
