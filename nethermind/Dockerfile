@@ -22,8 +22,8 @@ WORKDIR /app
 ENV REPO=https://github.com/NethermindEth/nethermind.git
 ENV VERSION=1.29.0
 ENV COMMIT=10412d1c3b502591db7d4bb80d26caf6045f165a
-RUN git clone $REPO --branch release/$VERSION --single-branch . && \
-    git switch -c branch-$VERSION 
+RUN git clone $REPO --branch $VERSION --single-branch . && \
+    git switch -c $VERSION 
 RUN bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
 RUN TARGETARCH=${TARGETARCH#linux/} && \
     arch=$([ "$TARGETARCH" = "amd64" ] && echo "x64" || echo "$TARGETARCH") && \
