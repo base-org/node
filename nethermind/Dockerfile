@@ -20,8 +20,8 @@ ARG TARGETARCH
 WORKDIR /app
 
 ENV REPO=https://github.com/NethermindEth/nethermind.git
-ENV VERSION=1.29.0
-ENV COMMIT=10412d1c3b502591db7d4bb80d26caf6045f165a
+ENV VERSION=1.29.1
+ENV COMMIT=dfea52404006c6ce1b133b98f324dbfcb62773e1
 RUN git clone $REPO --branch $VERSION --single-branch . && \
     git switch -c $VERSION 
 RUN bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
