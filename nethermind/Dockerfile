@@ -31,7 +31,7 @@ RUN TARGETARCH=${TARGETARCH#linux/} && \
     dotnet publish src/Nethermind/Nethermind.Runner -c $BUILD_CONFIG -a $arch -o /publish --sc false
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0.403-noble
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 RUN apt-get update && \
     apt-get install -y jq curl supervisor && \
