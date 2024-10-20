@@ -67,5 +67,5 @@ jobs:
           context: .
           file: nethermind/Dockerfile
           push: false
-          platforms: ${{ linux/amd64 }}
+          platforms: ${{ matrix.arch }}
 
