@@ -13,6 +13,7 @@ env:
   GETH_DEPRECATED_IMAGE_NAME: node
   GETH_IMAGE_NAME: node-geth
   RETH_IMAGE_NAME: node-reth
+  NETHERMIND_IMAGE_NAME: node-nethermind
 
 jobs:
   geth:
@@ -86,4 +87,44 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             FEATURES=${{ matrix.features }}
+          platforms: ${{ matrix.arch }}
+  nethermind:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux/amd64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+  
+      - name: Log into the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: ${{ matrix.arch }}
+  
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+  
+      - name: Extract metadata for the Docker image
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.NAMESPACE }}/${{ env.NETHERMIND_IMAGE_NAME }}
+  
+      - name: Build and push the Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: nethermind/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           platforms: ${{ matrix.arch }}
