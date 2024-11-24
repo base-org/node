@@ -2,6 +2,7 @@ name: Pull Request
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   geth:
@@ -30,8 +31,6 @@ jobs:
         include:
           - arch: linux/amd64
             features: jemalloc,asm-keccak,optimism
-          - arch: linux/arm64
-            features: jemalloc,optimism
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,3 +47,23 @@ jobs:
           build-args: |
             FEATURES=${{ matrix.features }}
           platforms: ${{ matrix.arch }}
+  nethermind:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ linux/amd64 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build the Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: nethermind/Dockerfile
+          push: false
+          platforms: ${{ matrix.arch }}
+
