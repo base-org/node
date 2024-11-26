@@ -7,7 +7,7 @@ ENV VERSION=v1.10.0
 ENV COMMIT=910c9ade39c0bcdff5f2badd94efbe016a428e73
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
-    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+    bash -c 'test "$(git rev-parse HEAD)" = "$0"' "$COMMIT"
 
 RUN cd op-node && \
     make VERSION=$VERSION op-node
