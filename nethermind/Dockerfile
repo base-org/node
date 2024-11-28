@@ -6,10 +6,8 @@ ENV REPO=https://github.com/ethereum-optimism/optimism.git
 ENV VERSION=v1.9.1
 ENV COMMIT=4797ddb70e05d4952685bad53e608cb5606284e6
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
-    git switch -c branch-$VERSION && \
-    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
-
-RUN cd op-node && \
+    git checkout $COMMIT && \
+    cd op-node && \
     make VERSION=$VERSION op-node
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0.403-noble AS build
@@ -23,8 +21,8 @@ ENV REPO=https://github.com/NethermindEth/nethermind.git
 ENV VERSION=1.29.1
 ENV COMMIT=dfea52404006c6ce1b133b98f324dbfcb62773e1
 RUN git clone $REPO --branch $VERSION --single-branch . && \
-    git switch -c $VERSION 
-RUN bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+    git checkout $COMMIT
+    
 RUN TARGETARCH=${TARGETARCH#linux/} && \
     arch=$([ "$TARGETARCH" = "amd64" ] && echo "x64" || echo "$TARGETARCH") && \
     echo "Using architecture: $arch" && \
