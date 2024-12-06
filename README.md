@@ -36,7 +36,7 @@ We recommend you have this hardware configuration to run a node:
 - a locally attached NVMe SSD drive
 - adequate storage capacity to accommodate both the snapshot restoration process (if restoring from snapshot) and chain data, ensuring a minimum of (2 \* current_chain_size) + snapshot_size + 20%\_buffer
 
-**Note:** If utilizing Amazon Elastic Block Store (EBS), ensure timing buffered disk reads are fast enough in order to avoid latency issues alongside the rate of new blocks added to Base during the initial synchronization process; `io2 block express` is recommended.
+**Note:** If utilizing Amazon Elastic Block Store (EBS), ensure time-buffered disk reads are fast enough in order to avoid latency issues alongside the rate of new blocks added to Base during the initial synchronization process; `io2 block express` is recommended.
 
 ### Troubleshooting
 
