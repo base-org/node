@@ -9,6 +9,9 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
 
+# Install 'just'
+RUN curl -sSfL 'https://just.systems/install.sh' | bash -s -- --to /usr/local/bin
+
 RUN cd op-node && \
     make VERSION=$VERSION op-node
 
