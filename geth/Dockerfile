@@ -31,7 +31,7 @@ RUN go run build/ci.go install -static ./cmd/geth
 FROM ubuntu:22.04
 
 RUN apt-get update && \
-    apt-get install -y jq curl supervisor && \
+    apt-get install -y curl jq supervisor && \
     rm -rf /var/lib/apt/lists
 RUN mkdir -p /var/log/supervisor
 
