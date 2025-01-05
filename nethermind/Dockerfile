@@ -1,4 +1,4 @@
-FROM golang:1.21 AS op
+FROM golang:1.22 AS op
 
 WORKDIR /app
 
@@ -8,6 +8,9 @@ ENV COMMIT=8bf7ff60f34a7c5082cec5c56bed1f76cc1893ad
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+
+# Install 'just'
+RUN curl -sSfL 'https://just.systems/install.sh' | bash -s -- --to /usr/local/bin
 
 RUN cd op-node && \
     make VERSION=$VERSION op-node
