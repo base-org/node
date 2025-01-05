@@ -3,8 +3,8 @@ FROM golang:1.21 AS op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism.git
-ENV VERSION=v1.9.1
-ENV COMMIT=4797ddb70e05d4952685bad53e608cb5606284e6
+ENV VERSION=v1.10.2
+ENV COMMIT=8bf7ff60f34a7c5082cec5c56bed1f76cc1893ad
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
@@ -20,8 +20,8 @@ ARG TARGETARCH
 WORKDIR /app
 
 ENV REPO=https://github.com/NethermindEth/nethermind.git
-ENV VERSION=1.29.1
-ENV COMMIT=dfea52404006c6ce1b133b98f324dbfcb62773e1
+ENV VERSION=1.30.3
+ENV COMMIT=87c863793b2302209187432b6afe5d7d84918bab
 RUN git clone $REPO --branch $VERSION --single-branch . && \
     git switch -c $VERSION 
 RUN bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
