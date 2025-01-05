@@ -12,7 +12,7 @@ RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
 RUN cd op-node && \
     make VERSION=$VERSION op-node
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0.403-noble AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-noble AS build
 
 ARG BUILD_CONFIG=release
 ARG TARGETARCH
@@ -31,7 +31,7 @@ RUN TARGETARCH=${TARGETARCH#linux/} && \
     dotnet publish src/Nethermind/Nethermind.Runner -c $BUILD_CONFIG -a $arch -o /publish --sc false
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble
 
 RUN apt-get update && \
     apt-get install -y jq curl supervisor && \
