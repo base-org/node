@@ -33,7 +33,6 @@ RUN TARGETARCH=${TARGETARCH#linux/} && \
     echo "Using architecture: $arch" && \
     dotnet publish src/Nethermind/Nethermind.Runner -c $BUILD_CONFIG -a $arch -o /publish --sc false
 
-
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble
 
 RUN apt-get update && \
