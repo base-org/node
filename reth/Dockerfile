@@ -24,11 +24,13 @@ WORKDIR /app
 RUN apt-get update && apt-get -y upgrade && apt-get install -y git libclang-dev pkg-config curl build-essential
 
 ENV REPO=https://github.com/paradigmxyz/reth.git
-ENV VERSION=v1.1.4
-ENV COMMIT=15fac0873e91ea29ab2e605bfba17bedcd7a6084
-RUN git clone $REPO --branch $VERSION --single-branch . && \
-    git switch -c branch-$VERSION && \
-    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+ENV VERSION=v1.1.4-dev
+ENV COMMIT=bc8d4fed1e7000e6ee08e1ba872b33be77cb52ef
+# RUN git clone $REPO --branch $VERSION --single-branch . && \
+#     git switch -c branch-$VERSION && \
+#     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+RUN git clone $REPO . && \
+    git checkout $COMMIT
 
 RUN cargo build --bin op-reth --features $FEATURES --profile maxperf --manifest-path crates/optimism/bin/Cargo.toml
 
