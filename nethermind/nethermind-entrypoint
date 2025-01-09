@@ -17,7 +17,7 @@ ADDITIONAL_ARGS=""
 
 # Check if required variables are set
 if [[ -z "$NETWORK" ]]; then
-    echo "Expected NETWORK to be set" 1>&2
+    echo "Expected NETWORK to be set" 1>&3
     exit 1
 fi
 
