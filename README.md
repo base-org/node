@@ -2,7 +2,7 @@
 
 # Base node
 
-Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism’s open-source [OP Stack](https://stack.optimism.io/).
+Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
@@ -55,7 +55,13 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 ### Usage
 
 1. Ensure you have an Ethereum L1 full node RPC available (not Base), and set `OP_NODE_L1_ETH_RPC` (in the `.env.*` file if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
-2. Uncomment the line relevant to your network (`.env.sepolia`, or `.env.mainnet`) under the 2 `env_file` keys in `docker-compose.yml`.
+2. Set the `NETWORK_ENV` environment variable to specify your network:
+   ```bash
+   # For mainnet:
+   export NETWORK_ENV=.env.mainnet
+   # For testnet:
+   export NETWORK_ENV=.env.sepolia
+   ```
 3. Run:
 
 ```
@@ -117,7 +123,7 @@ $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Cont
 
 ## Disclaimer
 
-We’re excited for you to build on Base 🔵 — but we want to make sure that you understand the nature of the node software and smart contracts offered here.
+We're excited for you to build on Base 🔵 — but we want to make sure that you understand the nature of the node software and smart contracts offered here.
 
 THE NODE SOFTWARE AND SMART CONTRACTS CONTAINED HEREIN ARE FURNISHED AS IS, WHERE IS, WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, NON- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN PARTICULAR, THERE IS NO REPRESENTATION OR WARRANTY THAT THE NODE SOFTWARE AND SMART CONTRACTS WILL PROTECT YOUR ASSETS — OR THE ASSETS OF THE USERS OF YOUR APPLICATION — FROM THEFT, HACKING, CYBER ATTACK, OR OTHER FORM OF LOSS OR DEVALUATION.
 
