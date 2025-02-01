@@ -16,10 +16,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v2
-      #   with:
-      #     platforms: linux/amd64,linux/arm64
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
