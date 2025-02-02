@@ -30,7 +30,7 @@ RUN git clone $REPO --branch $VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
     bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
 
-RUN go run build/ci.go install ./cmd/geth
+RUN go run build/ci.go install -static ./cmd/geth
 
 FROM ubuntu:22.04
 
