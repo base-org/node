@@ -29,20 +29,51 @@ This repository contains the relevant Docker builds to run your own node on the 
 
 ### Hardware requirements
 
-We recommend you have this hardware configuration to run a node:
+We recommend the following hardware configurations based on your use case:
 
-- a modern multi-core CPU with good single-core performance
-- at least 16 GB RAM (32 GB recommended)
-- a locally attached NVMe SSD drive
-- adequate storage capacity to accommodate both the snapshot restoration process (if restoring from snapshot) and chain data, ensuring a minimum of (2 \* current_chain_size) + snapshot_size + 20%\_buffer
+| Component | Minimum (Testing) | Recommended (Production) | High Performance |
+|-----------|------------------|------------------------|------------------|
+| CPU | 4 cores | 8 cores | 16+ cores |
+| RAM | 16 GB | 32 GB | 64 GB |
+| Storage | 1 TB NVMe SSD | 2 TB NVMe SSD | 4 TB NVMe SSD |
+| Network | 100 Mbps | 1 Gbps | 2+ Gbps |
 
-**Note:** If utilizing Amazon Elastic Block Store (EBS), ensure timing buffered disk reads are fast enough in order to avoid latency issues alongside the rate of new blocks added to Base during the initial synchronization process; `io2 block express` is recommended.
+Storage requirements breakdown:
+- Current chain size: ~500 GB (as of March 2024)
+- Snapshot size: ~400 GB
+- Required free space for sync: 1.5 TB
+- Recommended buffer: 20% of total storage
+
+**Performance Notes:**
+- Single-core performance is crucial for transaction processing
+- NVMe SSD is strongly recommended over SATA SSD for better sync times
+- If using cloud storage (like AWS EBS), recommended IOPS:
+  - io2 Block Express: 256,000 IOPS
+  - Minimum sustained IOPS: 100,000
 
 ### Troubleshooting
 
-If you encounter problems with your node, please open a [GitHub issue](https://github.com/base-org/node/issues/new/choose) or reach out on our [Discord](https://discord.gg/buildonbase):
+Common issues and solutions:
 
-- Once you've joined, in the Discord app go to `server menu` > `Linked Roles` > `connect GitHub` and connect your GitHub account so you can gain access to our developer channels
+1. **Sync Issues**
+   - Verify L1 node is fully synced
+   - Check network connectivity and resource usage
+   - Monitor system logs for errors: `docker compose logs -f`
+
+2. **Performance Problems**
+   - Ensure storage IOPS meets requirements
+   - Monitor RAM usage and swap space
+   - Check CPU utilization patterns
+
+3. **Connection Issues**
+   - Verify firewall settings
+   - Check Docker network configuration
+   - Ensure ports 8545 and 8546 are accessible
+
+#### ❗️ If you encounter problems with your node, please open a [GitHub issue](https://github.com/base-org/node/issues/new/choose) or reach out on our [Discord](https://discord.gg/buildonbase):
+
+- Once you've joined, in the Discord app go to `server menu` > `Linked Roles` > `connect GitHub` and 
+connect your GitHub account so you can gain access to our developer channels
 - Report your issue in `#🛟|developer-support` or `🛠｜node-operators`
 
 ### Supported networks
@@ -122,3 +153,4 @@ We’re excited for you to build on Base 🔵 — but we want to make sure that 
 THE NODE SOFTWARE AND SMART CONTRACTS CONTAINED HEREIN ARE FURNISHED AS IS, WHERE IS, WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, NON- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN PARTICULAR, THERE IS NO REPRESENTATION OR WARRANTY THAT THE NODE SOFTWARE AND SMART CONTRACTS WILL PROTECT YOUR ASSETS — OR THE ASSETS OF THE USERS OF YOUR APPLICATION — FROM THEFT, HACKING, CYBER ATTACK, OR OTHER FORM OF LOSS OR DEVALUATION.
 
 You also understand that using the node software and smart contracts are subject to applicable law, including without limitation, any applicable anti-money laundering laws, anti-terrorism laws, export control laws, end user restrictions, privacy laws, or economic sanctions laws/regulations.
+
