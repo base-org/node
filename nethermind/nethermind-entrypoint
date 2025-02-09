@@ -15,7 +15,7 @@ DISCOVERY_PORT="${DISCOVERY_PORT:-30303}"
 JWT_SECRET_FILE=${JWT_SECRET_FILE:-/tmp/jwt/jwtsecret}
 ADDITIONAL_ARGS=""
 
-# Check if required variables are set
+# Check if the required variables are set
 if [[ -z "$NETWORK" ]]; then
     echo "Expected NETWORK to be set" 1>&2
     exit 1
