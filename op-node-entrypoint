@@ -27,7 +27,7 @@ if [[ -z "$OP_NODE_NETWORK" && -z "$OP_NODE_ROLLUP_CONFIG" ]]; then
   exit 1
 fi
 
-# wait until local execution client comes up (authed so will return 401 without token)
+# wait until the local execution client comes up (authed so will return 401 without token)
 until [ "$(curl -s -w '%{http_code}' -o /dev/null "${OP_NODE_L2_ENGINE_RPC/ws/http}")" -eq 401 ]; do
   echo "waiting for execution client to be ready"
   sleep 5
