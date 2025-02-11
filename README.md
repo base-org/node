@@ -2,17 +2,17 @@
 
 # Base node
 
-Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism’s open-source [OP Stack](https://stack.optimism.io/).
+Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
 This repository contains the relevant Docker builds to run your own node on the Base network.
 
 <!-- Badge row 1 - status -->
 
-[![GitHub contributors](https://img.shields.io/github/contributors/base-org/node)](https://github.com/base-org/node/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/node)](https://github.com/base-org/node/graphs/commit-activity)
-[![GitHub Stars](https://img.shields.io/github/stars/base-org/node.svg)](https://github.com/base-org/node/stargazers)
-[![GitHub repo size](https://img.shields.io/github/repo-size/base-org/node)](https://github.com/base-org/node?tab=readme-ov-file)
-[![GitHub](https://img.shields.io/github/license/base-org/node?color=blue)](https://github.com/base-org/node/blob/main/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/base/node)](https://github.com/base/node/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/node)](https://github.com/base/node/graphs/commit-activity)
+[![GitHub Stars](https://img.shields.io/github/stars/base/node.svg)](https://github.com/base/node/stargazers)
+[![GitHub repo size](https://img.shields.io/github/repo-size/base/node)](https://github.com/base/node?tab=readme-ov-file)
+[![GitHub](https://img.shields.io/github/license/base/node?color=blue)](https://github.com/base/node/blob/main/LICENSE)
 
 <!-- Badge row 2 - links and profiles -->
 
@@ -24,8 +24,8 @@ This repository contains the relevant Docker builds to run your own node on the 
 
 <!-- Badge row 3 - detailed status -->
 
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/node)](https://github.com/base-org/node/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/node.svg)](https://github.com/base-org/node/issues)
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/node)](https://github.com/base/node/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base/node.svg)](https://github.com/base/node/issues)
 
 ### Hardware requirements
 
@@ -40,7 +40,7 @@ We recommend you have this hardware configuration to run a node:
 
 ### Troubleshooting
 
-If you encounter problems with your node, please open a [GitHub issue](https://github.com/base-org/node/issues/new/choose) or reach out on our [Discord](https://discord.gg/buildonbase):
+If you encounter problems with your node, please open a [GitHub issue](https://github.com/base/node/issues/new/choose) or reach out on our [Discord](https://discord.gg/buildonbase):
 
 - Once you've joined, in the Discord app go to `server menu` > `Linked Roles` > `connect GitHub` and connect your GitHub account so you can gain access to our developer channels
 - Report your issue in `#🛟|developer-support` or `🛠｜node-operators`
@@ -55,7 +55,13 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 ### Usage
 
 1. Ensure you have an Ethereum L1 full node RPC available (not Base), and set `OP_NODE_L1_ETH_RPC` (in the `.env.*` file if using docker-compose). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
-2. Uncomment the line relevant to your network (`.env.sepolia`, or `.env.mainnet`) under the 2 `env_file` keys in `docker-compose.yml`.
+2. Set the `NETWORK_ENV` environment variable to specify your network:
+   ```bash
+   # For mainnet:
+   export NETWORK_ENV=.env.mainnet
+   # For testnet:
+   export NETWORK_ENV=.env.sepolia
+   ```
 3. Run:
 
 ```
@@ -96,7 +102,7 @@ Note that you'll need to override some of the default configuration that assumes
 Example:
 
 ```
-docker run --env-file .env.sepolia -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -e OP_NODE_RPC_PORT=7545 ghcr.io/base-org/node:latest
+docker run --env-file .env.sepolia -e OP_NODE_L2_ENGINE_RPC=ws://localhost:8551 -e OP_NODE_RPC_PORT=7545 ghcr.io/base/node:latest
 ```
 
 ### Snapshots
@@ -117,8 +123,8 @@ $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Cont
 
 ## Disclaimer
 
-We’re excited for you to build on Base 🔵 — but we want to make sure that you understand the nature of the node software and smart contracts offered here.
+We're excited for you to build on Base 🔵 — but we want to make sure that you understand the nature of the node software and smart contracts offered here.
 
-THE NODE SOFTWARE AND SMART CONTRACTS CONTAINED HEREIN ARE FURNISHED AS IS, WHERE IS, WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, NON- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN PARTICULAR, THERE IS NO REPRESENTATION OR WARRANTY THAT THE NODE SOFTWARE AND SMART CONTRACTS WILL PROTECT YOUR ASSETS — OR THE ASSETS OF THE USERS OF YOUR APPLICATION — FROM THEFT, HACKING, CYBER ATTACK, OR OTHER FORM OF LOSS OR DEVALUATION.
+THE NODE SOFTWARE AND SMART CONTRACTS CONTAINED HEREIN ARE FURNISHED AS IS, WHERE IS, WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, NON-INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN PARTICULAR, THERE IS NO REPRESENTATION OR WARRANTY THAT THE NODE SOFTWARE AND SMART CONTRACTS WILL PROTECT YOUR ASSETS — OR THE ASSETS OF THE USERS OF YOUR APPLICATION — FROM THEFT, HACKING, CYBER ATTACK, OR OTHER FORM OF LOSS OR DEVALUATION.
 
 You also understand that using the node software and smart contracts are subject to applicable law, including without limitation, any applicable anti-money laundering laws, anti-terrorism laws, export control laws, end user restrictions, privacy laws, or economic sanctions laws/regulations.

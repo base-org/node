@@ -13,9 +13,7 @@ services:
     volumes:
         - ${HOST_DATA_DIR}:/data
     env_file:
-      # select your network here:
-#      - .env.sepolia
-#      - .env.mainnet
+      - ${NETWORK_ENV:?.env.mainnet}  # Requires NETWORK_ENV to be set, defaults to mainnet
   node:
     build:
       context: .
@@ -30,6 +28,4 @@ services:
       - "6060:6060"     # pprof
     command: [ "bash", "./op-node-entrypoint" ]
     env_file:
-      # select your network here:
-#      - .env.sepolia
-#      - .env.mainnet
+      - ${NETWORK_ENV:?.env.mainnet}  # Requires NETWORK_ENV to be set, defaults to mainnet
