@@ -3,7 +3,7 @@ FROM golang:1.22 AS op
 WORKDIR /app
 
 ENV REPO=https://github.com/ethereum-optimism/optimism.git
-ENV VERSION=op-node/v1.11.0
+ENV VERSION=v1.11.0
 ENV COMMIT=70fa4491f45b3d5d493394da2a154e3f22b61a5a
 RUN git clone $REPO --branch op-node/$VERSION --single-branch . && \
     git switch -c branch-$VERSION && \
